@@ -1,9 +1,11 @@
 {
   "name": "feast-redux",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Experimental Feast bindings for Redux",
-  "main": "feast-redux.js",
+  "main": "./compiled/feast-redux.js",
   "scripts": {
+    "build": "babel ./src/ --out-dir ./compiled/",
+    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,10 @@
   "bugs": {
     "url": "https://github.com/RubaXa/feast-redux/issues"
   },
-  "homepage": "https://github.com/RubaXa/feast-redux#readme"
+  "homepage": "https://github.com/RubaXa/feast-redux#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0"
+  }
 }
