@@ -24,6 +24,6 @@ const UIApp = feast.Block.extend({
 
 export default connect(
 	(state) => state, // mapStateToAttrs
-	(dispatch) => ({dispatch}) // mapDispatchToProps
+	(dispatch) => ({dispatch}) // mapDispatchToAttrs
 )(UIApp);
 ```
