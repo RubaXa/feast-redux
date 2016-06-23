@@ -1,0 +1,23 @@
+{
+  "name": "feast-redux",
+  "version": "0.1.0",
+  "description": "Experimental Feast bindings for Redux",
+  "main": "feast-redux.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubaXa/feast-redux.git"
+  },
+  "keywords": [
+    "feast",
+    "redux"
+  ],
+  "author": "RubaXa <trash@rubaxa.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RubaXa/feast-redux/issues"
+  },
+  "homepage": "https://github.com/RubaXa/feast-redux#readme"
+}
