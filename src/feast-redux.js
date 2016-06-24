@@ -35,7 +35,7 @@ export function connect(mapStateToAttrs, mapDispatchToAttrs, mergeAttrs) {
 
 			constructor(attrs, context) {
 				_super.constructor.call(this, prepareAttrs(attrs, context.store), context);
-				this.unsibscribeHandleStoreChnaged = context.store.subscribe(this.handleStoreChnaged.bind(this));
+				this.unsibscribeHandleReduxStoreChanged = context.store.subscribe(this.handleReduxStoreChanged.bind(this));
 				
 				const eventsToActions = this.eventsToActions || {};
 
@@ -53,13 +53,13 @@ export function connect(mapStateToAttrs, mapDispatchToAttrs, mergeAttrs) {
 				_super.set.call(this, prepareAttrs(attrs, this.context.store));
 			},
 
-			handleStoreChnaged() {
+			handleReduxStoreChanged() {
 				this.set({});
 			},
 
 			destroy() {
 				_super.destroy.apply(this, arguments);
-				this.unsibscribeHandleStoreChnaged();
+				this.unsibscribeHandleReduxStoreChanged();
 			}
 		});
 	}
