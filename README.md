@@ -4,6 +4,13 @@ Feast Redux
 Experimental Feast bindings for [Redux](https://github.com/reactjs/redux).
 
 
+### Examples
+
+ - [TodoMVC](./examples/todomvc/) — [redux/todomvc](https://github.com/reactjs/redux/tree/master/examples/todomvc)—port
+
+
+### Usage
+
 ```js
 // ./blocks/app.js
 import feast from 'feast';
