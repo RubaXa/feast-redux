@@ -26,4 +26,12 @@ export default connect(
 	(state) => state, // mapStateToAttrs
 	(dispatch) => ({dispatch}) // mapDispatchToAttrs
 )(UIApp);
+
+// index.js
+import App from './blocks/app.js';
+import configureStore from './store/configureStore';
+
+const store = configureStore();
+
+new App({}, {store}).renderTo(document.getElementById('root'));
 ```

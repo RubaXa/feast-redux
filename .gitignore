@@ -30,4 +30,5 @@ node_modules
 .idea
 .time-grunt.json
 
-./compiled/
+# Project
+compiled

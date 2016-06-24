@@ -1,6 +1,6 @@
 {
   "name": "feast-redux",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Experimental Feast bindings for Redux",
   "main": "./compiled/feast-redux.js",
   "scripts": {
@@ -8,6 +8,11 @@
     "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "compiled",
+    "src",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RubaXa/feast-redux.git"

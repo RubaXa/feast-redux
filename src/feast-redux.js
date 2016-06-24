@@ -19,11 +19,11 @@ export function connect(mapStateToAttrs, mapDispatchToAttrs, mergeAttrs) {
 	mapDispatchToAttrs = mapDispatchToAttrs || defaultMapDispatchToAttrs;
 	mergeAttrs = mergeAttrs || defaultMergeAttrs;
 
-	function prepareAttrs(attrs, store) {
+	function prepareAttrs(ownAttrs, store) {
 		return mergeAttrs(
-			mapStateToAttrs(store.getState()),
-			mapDispatchToAttrs(store.dispatch),
-			attrs
+			mapStateToAttrs(store.getState(), ownAttrs),
+			mapDispatchToAttrs(store.dispatch, ownAttrs),
+			ownAttrs
 		);
 	}
 
@@ -58,6 +58,7 @@ export function connect(mapStateToAttrs, mapDispatchToAttrs, mergeAttrs) {
 			},
 
 			destroy() {
+				_super.destroy.apply(this, arguments);
 				this.unsibscribeHandleStoreChnaged();
 			}
 		});
