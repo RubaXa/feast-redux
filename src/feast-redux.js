@@ -31,7 +31,7 @@ export function connect(mapStateToAttrs, mapDispatchToAttrs, mergeAttrs) {
 		const _super = UIFeastClass.prototype;
 
 		return UIFeastClass.extend({
-			name: UIFeastClass.prototype.name,
+			name: `${UIFeastClass.blockName || UIFeastClass.prototype.name}Connect`,
 
 			constructor(attrs, context) {
 				_super.constructor.call(this, prepareAttrs(attrs, context.store), context);
