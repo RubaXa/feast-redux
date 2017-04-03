@@ -1,14 +1,12 @@
-import feast from 'feast'
+import { Block } from 'feast'
 import TodoTextInput from './TodoTextInput'
 
-const TodoItem = feast.Block.extend({
-  name: 'todo-item',
-
-  blocks: {
+export default class TodoItem extends Block {
+  static blockName = 'todo-item'
+  static blocks = {
     'todo-text-input': TodoTextInput
-  },
-  
-  template: `<li>
+  }
+  static template = `<li>
     <fn:add-class name="completed" test="attrs.todo.completed"/>
     <fn:add-class name="editing" test="attrs.editing"/>
     <fn:choose>
@@ -39,11 +37,11 @@ const TodoItem = feast.Block.extend({
         </div>
       </fn:otherwise>
     </fn:choose>
-  </li>`,
+  </li>`
 
   handleDoubleClick() {
     this.set({ editing: true })
-  },
+  }
 
   handleSave(id, value) {
     if (value.length === 0) {
@@ -53,6 +51,4 @@ const TodoItem = feast.Block.extend({
     }
     this.set({ editing: false })
   }
-})
-
-export default TodoItem
+}

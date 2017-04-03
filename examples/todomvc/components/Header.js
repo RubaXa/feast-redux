@@ -1,18 +1,17 @@
-import feast from 'feast'
+import { Block } from 'feast'
 import TodoTextInput from './TodoTextInput'
 
-const Header = feast.Block.extend({
-  name: 'header',
-
-  blocks: {
+export default class Header extends Block {
+  static blockName = 'header'
+  static blocks = {
     'todo-text-input': TodoTextInput
-  },
+  }
   
-  events: {
+  static events = {
     'add': 'handleAdd'
-  },
+  }
 
-  template: `<header class="header">
+  static template = `<header class="header">
     <h1>todos</h1>
     <b:todo-text-input
       new-todo
@@ -20,7 +19,7 @@ const Header = feast.Block.extend({
       placeholder="What needs to be done?"
     />
   </header>
-  `,
+  `
 
   handleAdd(evt) {
     const text = evt.details.value;
@@ -29,6 +28,6 @@ const Header = feast.Block.extend({
       this.attrs['add-todo'](text)
     }
   }
-})
+}
 
-export default Header
+

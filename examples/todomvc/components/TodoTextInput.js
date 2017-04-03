@@ -1,16 +1,14 @@
-import feast from 'feast'
+import { Block } from 'feast'
 
 const ENTER_KEY = 13;
 
-const TodoTextInput = feast.Block.extend({
-  name: 'todo-text-input',
-
-  events: {
+export default class TodoTextInput extends  Block {
+  static blockName = 'todo-text-input'
+  static events = {
     'typing': 'handleTyping',
     'submit': 'handleSubmit'
-  },
-
-  template: `<input
+  }
+  static template = `<input
       type="text"
       autofocus
       placeholder="{attrs.placeholder}"
@@ -20,23 +18,20 @@ const TodoTextInput = feast.Block.extend({
     >
     <fn:add-class name="edit" test="attrs.editing"/>
     <fn:add-class name="new-todo" test="attrs['new-todo']"/>
-  </input>`,
+  </input>`
 
   handleTyping(evt) {
     this.set('value', evt.target.value.trim())
-  },
+  }
 
   handleSubmit(evt) {
-    const value = this.attrs.value;
+    const value = this.attrs.value
 
     if (evt.originalEvent.which === ENTER_KEY) {
-      this.broadcast('save', {value}, evt)
+      this.broadcast('save', { value }, evt)
       this.set('value', '')
     }
 
-    return true;
+    return true
   }
-
-});
-
-export default TodoTextInput
+}
