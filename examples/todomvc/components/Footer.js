@@ -1,4 +1,4 @@
-import { Block } from 'feast'
+import { configure, Block } from 'feast'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
 const FILTER_TITLES = {
@@ -7,9 +7,9 @@ const FILTER_TITLES = {
   [SHOW_COMPLETED]: 'Completed'
 }
 
-export default class Footer extends Block {
-  static blockName = 'footer'
-  static template =`<footer class="footer">
+@configure({
+  name: 'footer',
+  template: `<footer class="footer">
     <span class="todo-count">
        <strong><fn:value>attrs['active-count'] || 'No'</fn:value></strong>
        <fn:value>' '</fn:value>
@@ -34,7 +34,8 @@ export default class Footer extends Block {
     >
          Clear completed
     </button>
-  </footer>`
-
+  </footer>`,
+})
+export default class Footer extends Block {
   FILTER_TITLES = FILTER_TITLES
 }

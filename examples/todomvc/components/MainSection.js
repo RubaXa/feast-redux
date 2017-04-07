@@ -1,4 +1,4 @@
-import { Block } from 'feast'
+import { configure, Block } from 'feast'
 import TodoItem from './TodoItem'
 import Footer from './Footer'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
@@ -9,22 +9,20 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: todo => todo.completed
 }
 
-export default class MainSection extends Block {
-  static blockName = 'main-section';
-  static events = {
+@configure({
+  name: 'main-section',
+  events: {
     'show': 'handleShow',
     'clear-completed': 'handleClearCompleted'
-  }
-  static blocks = {
+  },
+  blocks: {
     'todo-item': TodoItem,
     'footer': Footer
-  }
-
-  static defaults = {
+  },
+  defaults: {
     filter: SHOW_ALL
-  }
-
-  static template = `<section class="main">
+  },
+  template: `<section class="main">
     <fn:var name="completedCount" value="{_this.getCompletedCount()}"/>
     <fn:var name="activeCount" value="{attrs.todos.length - completedCount}"/>
     
@@ -55,8 +53,9 @@ export default class MainSection extends Block {
         on-setfilter="_this.handleShow(evt.details.name)"
         on-clearcompleted="_this.handleClearCompleted()"
      />
-  </section>`
-
+  </section>`,
+})
+export default class MainSection extends Block {
   TODO_FILTERS = TODO_FILTERS;
 
   handleClearCompleted() {

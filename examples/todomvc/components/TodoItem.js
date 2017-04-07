@@ -1,12 +1,12 @@
-import { Block } from 'feast'
+import { configure, Block } from 'feast'
 import TodoTextInput from './TodoTextInput'
 
-export default class TodoItem extends Block {
-  static blockName = 'todo-item'
-  static blocks = {
+@configure({
+  name: 'todo-item',
+  blocks: {
     'todo-text-input': TodoTextInput
-  }
-  static template = `<li>
+  },
+  template: `<li>
     <fn:add-class name="completed" test="attrs.todo.completed"/>
     <fn:add-class name="editing" test="attrs.editing"/>
     <fn:choose>
@@ -37,8 +37,9 @@ export default class TodoItem extends Block {
         </div>
       </fn:otherwise>
     </fn:choose>
-  </li>`
-
+  </li>`,
+})
+export default class TodoItem extends Block {
   handleDoubleClick() {
     this.set({ editing: true })
   }

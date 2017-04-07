@@ -1,14 +1,14 @@
-import { Block } from 'feast'
+import { configure, Block } from 'feast'
 
 const ENTER_KEY = 13;
 
-export default class TodoTextInput extends  Block {
-  static blockName = 'todo-text-input'
-  static events = {
+@configure({
+  name: 'todo-text-input',
+  events: {
     'typing': 'handleTyping',
     'submit': 'handleSubmit'
-  }
-  static template = `<input
+  },
+  template: `<input
       type="text"
       autofocus
       placeholder="{attrs.placeholder}"
@@ -19,7 +19,8 @@ export default class TodoTextInput extends  Block {
     <fn:add-class name="edit" test="attrs.editing"/>
     <fn:add-class name="new-todo" test="attrs['new-todo']"/>
   </input>`
-
+})
+export default class TodoTextInput extends  Block {
   handleTyping(evt) {
     this.set('value', evt.target.value.trim())
   }

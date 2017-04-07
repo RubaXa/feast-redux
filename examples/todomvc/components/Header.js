@@ -1,26 +1,24 @@
-import { Block } from 'feast'
+import { configure, Block } from 'feast'
 import TodoTextInput from './TodoTextInput'
 
-export default class Header extends Block {
-  static blockName = 'header'
-  static blocks = {
+@configure({
+  name: 'header',
+  blocks: {
     'todo-text-input': TodoTextInput
-  }
-  
-  static events = {
+  },
+  events: {
     'add': 'handleAdd'
-  }
-
-  static template = `<header class="header">
+  },
+  template: `<header class="header">
     <h1>todos</h1>
     <b:todo-text-input
       new-todo
       remit:save="add"
       placeholder="What needs to be done?"
     />
-  </header>
-  `
-
+  </header>`,
+})
+export default class Header extends Block {
   handleAdd(evt) {
     const text = evt.details.value;
     

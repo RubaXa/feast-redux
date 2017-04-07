@@ -1,23 +1,22 @@
-import feast, { Block } from 'feast'
+import { configure, Block } from 'feast'
 import { bindActionCreators } from 'redux'
 import { connect } from 'feast-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
 import * as TodoActions from '../actions'
 
-class App extends Block {
-  static blockName = 'app'
-
-  static blocks = {
+@configure({
+  name: 'app',
+  blocks: {
     'header': Header,
-    'main-section': MainSection
-  }
-  
-  static template = `<div>
+    'main-section': MainSection,
+  },
+  template: `<div>
     <b:header add-todo="{attrs.actions.addTodo}" />
     <b:main-section todos="{attrs.todos}" actions="{attrs.actions}" />
-  </div>`
-}
+  </div>`,
+})
+class App extends Block { }
 
 function mapStateToAttrs(state) {
   return {
