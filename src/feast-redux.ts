@@ -96,7 +96,8 @@ export function connect (mapStateToAttrs?: MapStateToAttrs | null, mapDispatchTo
 			}
 		};
 
-		(HOC.prototype as any).name = `${(UIFeastClass as any).blockName || UIFeastClass.prototype.name}Connect`;
+		const name = (UIFeastClass as any).blockName || UIFeastClass.prototype.name;
+		(HOC.prototype as any).name = `${name} ${name}Connect`;
 
 		return HOC;
 	}
