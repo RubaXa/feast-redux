@@ -29,8 +29,14 @@ function defaultMergeAttrs<S> (stateAttrs: any, dispatchAttrs: any, ownAttrs: an
 	};
 }
 
+export declare interface ReduxedBlock<A, S> extends Block<A & DispatchAttrs<S>> {
+	readonly dispatch: Redux.Dispatch<S>;
+	unsibscribeHandleReduxStoreChanged: Function;
+	eventsToActions?: { [event: string]: any };
+}
+
 export declare interface ReduxedBlockConstructor<A> {
-	new<S>(attrs: Partial<A>, context: StoreContext<S>): Block<A & DispatchAttrs<S>>;
+	new<S>(attrs: Partial<A>, context: StoreContext<S>): ReduxedBlock<A, S>;
 }
 
 export function connect (mapStateToAttrs?: MapStateToAttrs | null, mapDispatchToAttrs?: MapDispatchToAttrs | null, mergeAttrs?: MergeAttrs | null): <A>(UIFeastClass: BlockConstructor<A>) => ReduxedBlockConstructor<A> {
@@ -90,7 +96,8 @@ export function connect (mapStateToAttrs?: MapStateToAttrs | null, mapDispatchTo
 			}
 		};
 
-		(HOC.prototype as any).name = `${(UIFeastClass as any).blockName || UIFeastClass.prototype.name}Connect`;
+		const name = (UIFeastClass as any).blockName || UIFeastClass.prototype.name;
+		(HOC.prototype as any).name = `${name} redux-connected`;
 
 		return HOC;
 	}
