@@ -97,7 +97,7 @@ export function connect (mapStateToAttrs?: MapStateToAttrs | null, mapDispatchTo
 		};
 
 		const name = (UIFeastClass as any).blockName || UIFeastClass.prototype.name;
-		(HOC.prototype as any).name = `${name} ${name}Connect`;
+		(HOC.prototype as any).name = `${name} redux-connected`;
 
 		return HOC;
 	}
